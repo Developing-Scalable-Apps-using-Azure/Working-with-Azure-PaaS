@@ -110,8 +110,9 @@ In appsettings.json
 ## Step 3.
 1. Add support for Azure Redis
 ```
-	  <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.2.0" />
-	  <PackageReference Include="StackExchange.Redis" Version="2.2.88" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="7.0.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.12" />
 ``` 
 3. Add the cache connection string to appsettings.json
 4. Dependency inject the cache connection using Program.cs
