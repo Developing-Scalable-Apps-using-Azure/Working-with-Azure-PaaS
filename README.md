@@ -233,8 +233,102 @@ Add partial layout in the _Layout.cshtml file for sign in/out:
 	<partial name="_LoginPartial" />
 ```
 
-	
+## Step 6
+### App Service for Web Apps
 
+IaaS options are great when you need access to the host machine to configure and deploy your app, but it leaves you with a lot of management overhead. Platform-as-a-Service (PaaS) takes care of that for you, simplifying deployment and updates, provided your application is supported in the PaaS environment. Azure has a few PaaS options - App Service is a very popular one.
+
+In this lab you'll create an App Service deployment by pushing source code from your local machine. Azure will compile and configure the app for you.
+
+### Reference
+
+- [Azure App Service overview](https://docs.microsoft.com/en-us/azure/app-service/overview)
+
+- [App Service Plan overview](https://docs.microsoft.com/en-us/azure/app-service/overview-hosting-plans)
+
+- [`az appservice` commands](https://docs.microsoft.com/en-us/cli/azure/appservice?view=azure-cli-latest)
+
+- [`az webapp` commands](https://docs.microsoft.com/en-us/cli/azure/webapp?view=azure-cli-latest)
+
+
+### Explore App Service 
+
+Create a new resource in the Portal - search for _Web app_ (which is one of the App Service types):
+
+- the app needs a Resource Group and an App Service Plan
+- you have options to publish from: source code, Docker containers, static web content
+- for the source code option, you can choosse the runtime stack & OS (e.g. Java on Linux or .NET on Windows)
+
+As usual, we won't create from the Portal, we'll switch to the CLI.
+
+### Create an App Service Plan
+
+Create a Resource Group for the lab:
+
+```
+az group create -n <your-name>-labs-appservice  -l westeurope --tags courselabs=azure
+```
+
+Before we can create the app we need an App Service Plan - which is an abstraction of the infrastructure needed to run applications.
+
+📋 Create an App Service Plan using the basic B1 SKU, and with one instance.
+
+<details>
+  <summary>Not sure how?</summary>
+
+This is fairly straightforward: 
+
+```
+az appservice plan create -g <your-name>-labs-appservice -n <your-name>-app-service-01 --sku B1 --number-of-workers 1
+```
+
+</details><br/>
+
+Open the RG in the Portal. The only resource is the App Service Plan. Open that and you'll see an empty app list, and the scale up and scale out options (which are limited by the plan SKU).
+	
+### Create an app for deployment
+
+We can create a Web App using the new App Service Plan. List the available runtimes to see what platforms are supported:
+
+```
+az webapp list-runtimes
+```
+
+Under the Windows options we have dotnet:6. This would work for pretty much any older .NET applications, and is a good fit for migrating apps to the cloud if you have the source code and you don't need the control you get with IaaS.
+
+📋 Create web app in the service plan using the dotnet:6 runtime, and set for deployment from a local Git repository.
+
+<details>
+  <summary>Not sure how?</summary>
+
+Check the help text for a new web app:
+
+```
+az webapp create --help
+```
+
+You need to specify the runtime, deployment method and a unique DNS name for the app:
+
+```
+az webapp create -g <your-name>-labs-appservice --plan <your-name>-app-service-01 --runtime 'dotnet:6' --name <dns-unique-app-name>
+```
+
+</details><br/>
+
+Check the RG again in the Portal when your CLI command has completed.
+
+> Now the web app is listed as a separate resource - the type is _App Service_ - but you can navigate to the plan from the app and vice versa
+
+Open the web app and you'll see it has a public URL, which uses the application name you set; HTTPS is provided by the platform. 
+
+Browse to your app URL, you'll see a landing page saying "Your web app is running and waiting for your content".
+
+### Deploy the web app
+
+Deploy the app using Visual Studio IDE. Right click on the web app in Visual Studio and click publish. Follow the authentication steps to deploy to the above app service.
+
+
+## Notes
 Sample scaffolding Commands - Do not run directly
 ```
 dotnet ef dbcontext scaffold "Server=tcp:ibdbserver.database.windows.net,1433;Initial Catalog=ibdb;Persist Security Info=False;User ID=adminuser;Password=Admin1234567;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
