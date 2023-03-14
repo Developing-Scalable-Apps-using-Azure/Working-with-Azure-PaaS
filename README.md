@@ -377,6 +377,8 @@ Add partial layout in the _Layout.cshtml file for sign in/out:
 ```
 	<partial name="_LoginPartial" />
 ```
+<img width="1172" alt="image" src="https://user-images.githubusercontent.com/11691661/225157130-5dcfb992-574a-4181-b014-000aad282ec1.png">
+
 
 ### Deploy the web app
 
