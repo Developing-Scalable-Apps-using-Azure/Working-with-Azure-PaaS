@@ -204,12 +204,17 @@ In Program.cs
 var connectionString = builder.Configuration.GetConnectionString("ibdb");
 builder.Services.AddDbContext<<your-db-context-class>>(x => x.UseSqlServer(connectionString));
 ```
+<img width="952" alt="image" src="https://user-images.githubusercontent.com/11691661/225085885-0e66713a-2ee9-4107-a6c8-9b18dba7c802.png">
+	
+
 In appsettings.json
 ```
 "ConnectionStrings": {
 "ibdb": "Server=tcp:sb-azuresql-server-286930812.database.windows.net,1433;Initial Catalog=<your-database-name>;Persist Security Info=False;User ID=azureuser;Password=Admin@1234567;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
   }
 ```
+<img width="1172" alt="image" src="https://user-images.githubusercontent.com/11691661/225085998-a861f9e6-a9c2-49c4-ad52-c1a36b9d6712.png">
+
 
 ## Step 4.
 
