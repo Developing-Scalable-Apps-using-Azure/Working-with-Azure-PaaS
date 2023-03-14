@@ -186,7 +186,7 @@ Select the model and data context xlass from the dropdown
 
 6. Dependency inject the connection string by replacing the OnConfiguring method with the below code snippet:
 
-In <DBContext>.cs
+In DBContext.cs
 ```
 protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
