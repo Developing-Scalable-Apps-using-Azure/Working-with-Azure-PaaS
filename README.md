@@ -152,7 +152,7 @@ GRANT select, insert, update, delete to applicationUser
 
 ## Step 3.
 1. Create a new .NET 6 core MVC project 
-2. Install the nuget packages
+2. Install the nuget packages by pasting the below snippet in <your-web-app-name>.csproj file
 ```
  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.14" />
@@ -168,13 +168,21 @@ GRANT select, insert, update, delete to applicationUser
   ```
 3. Add an "images" folder in wwwroot. Upload - [cookies image](https://github.com/Developing-Scalable-Apps-using-Azure/International-Bakers/blob/master/InternationalBakers/wwwroot/images/cookie.jpg)
 4. Scaffold the DB context - run the below command in the visual studio package manager console:
+<img width="753" alt="image" src="https://user-images.githubusercontent.com/11691661/224944023-e2f3aa73-f45d-420d-82fa-c524eb320719.png">
+
 ```
 Scaffold-DbContext "<your conn string>" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -ContextDir "Data" -DataAnnotations
 ```
 5. Create new controllers using Entity Framework with models and views
-6. Dependency inject the connection string:
+<img width="678" alt="image" src="https://user-images.githubusercontent.com/11691661/224944171-aa3597ea-ac5f-41bd-8ced-f8182d4bf867.png">
 
-In DBContext.cs
+<img width="952" alt="image" src="https://user-images.githubusercontent.com/11691661/224944344-7076a110-7dad-434b-99d1-8445e277911e.png">
+
+Select the model and data context xlass from the dropdown
+
+6. Dependency inject the connection string by replacing the OnConfiguring method with the below code snippet:
+
+In <DBContext>.cs
 ```
 protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
