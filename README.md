@@ -154,17 +154,18 @@ GRANT select, insert, update, delete to applicationUser
 1. Create a new .NET 6 core MVC project 
 2. Install the nuget packages by pasting the below snippet in <your-web-app-name>.csproj file
 ```
- <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.14" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.14">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.14">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+ 	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.14" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.14">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.14" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.14">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
   ```
 3. Add an "images" folder in wwwroot. Upload - [cookies image](https://github.com/Developing-Scalable-Apps-using-Azure/International-Bakers/blob/master/InternationalBakers/wwwroot/images/cookie.jpg)
 
