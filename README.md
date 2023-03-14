@@ -167,6 +167,9 @@ GRANT select, insert, update, delete to applicationUser
   </ItemGroup>
   ```
 3. Add an "images" folder in wwwroot. Upload - [cookies image](https://github.com/Developing-Scalable-Apps-using-Azure/International-Bakers/blob/master/InternationalBakers/wwwroot/images/cookie.jpg)
+
+4. Update the home page to - index.html (https://github.com/Developing-Scalable-Apps-using-Azure/International-Bakers/blob/master/InternationalBakers/Views/Home/Index.cshtml)
+	
 4. Scaffold the DB context - run the below command in the visual studio package manager console:
 <img width="753" alt="image" src="https://user-images.githubusercontent.com/11691661/224944023-e2f3aa73-f45d-420d-82fa-c524eb320719.png">
 
