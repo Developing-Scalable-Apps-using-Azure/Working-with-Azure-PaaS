@@ -208,7 +208,46 @@ In appsettings.json
 ```
 
 ## Step 4.
-1. Add support for Azure Redis
+
+### Pre-requisite: Provision an Azure Redis cache instance
+```
+# Variable block
+let "randomIdentifier=$RANDOM*$RANDOM"
+location="East US"
+resourceGroup="<your-rg-name>"
+tag="create-manage-cache"
+cache="ibcache-$randomIdentifier"
+sku="basic"
+size="C0"
+
+# Create a resource group
+echo "Creating $resourceGroup in "$location"..."
+az group create --resource-group $resourceGroup --location "$location" --tags $tag
+
+# Create a Basic C0 (256 MB) Redis Cache
+echo "Creating $cache"
+az redis create --name $cache --resource-group $resourceGroup --location "$location" --sku $sku --vm-size $size
+
+# Get details of an Azure Cache for Redis
+echo "Showing details of $cache"
+az redis show --name "$cache" --resource-group $resourceGroup 
+
+# Retrieve the hostname and ports for an Azure Redis Cache instance
+redis=($(az redis show --name "$cache" --resource-group $resourceGroup --query [hostName,enableNonSslPort,port,sslPort] --output tsv))
+
+# Retrieve the keys for an Azure Redis Cache instance
+keys=($(az redis list-keys --name "$cache" --resource-group $resourceGroup --query [primaryKey,secondaryKey] --output tsv))
+
+# Display the retrieved hostname, keys, and ports
+echo "Hostname:" ${redis[0]}
+echo "Non SSL Port:" ${redis[2]}
+echo "Non SSL Port Enabled:" ${redis[1]}
+echo "SSL Port:" ${redis[3]}
+echo "Primary Key:" ${keys[0]}
+echo "Secondary Key:" ${keys[1]}	
+```
+	
+1. Add support for Azure Redis by pasting the below snippet in your project's csproj file
 ```
     <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="7.0.3" />
