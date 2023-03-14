@@ -305,8 +305,7 @@ private readonly IDistributedCache _cache;
 
 
 ## Step 5.
-Create an Azure AD app registration
-value
+Create an Azure AD app registration with secret value: w5R8Q~yEPejsgL1aJ4ubYVa5v0.Y-jWOHHdXqcJC
 
 1. In appsettings.json:
      "AzureAd": {
