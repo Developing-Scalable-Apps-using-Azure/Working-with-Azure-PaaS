@@ -307,15 +307,13 @@ private readonly IDistributedCache _cache;
 ## Step 5.
 Create an Azure AD app registration
 value
-S3h8Q~d7p835hKkVQMMBh2sZ1LIkhGUm1Jpd6cst
-ID
-fc0ec619-e702-4c8a-9c7f-78ba3685a46f
+
 1. In appsettings.json:
      "AzureAd": {
         "Instance": "https://login.microsoftonline.com/",
-        "Domain": "siddharthdwngmail.onmicrosoft.com",
-        "TenantId": "0e97f85a-b424-40f3-8fcc-bdde6023332e",
-        "ClientId": "8fa7b6f3-3378-43b0-ad32-2dcffb3131e2",
+        "Domain": "datacouchtrainingoutlook.onmicrosoft.com",
+        "TenantId": "87b7955d-4a78-474a-8a5c-6a5aaebe4ef2",
+        "ClientId": "9c86c446-a50d-49ba-8108-e4d0364a8d44",
         "CallbackPath": "/signin-oidc"
       }
 
